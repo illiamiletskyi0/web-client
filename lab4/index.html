@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Card</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-8">
+
+  <div class="w-80 rounded-xl shadow-lg bg-white overflow-visible">
+    <div class="h-1 bg-gradient-to-r from-green-400 via-teal-400 to-blue-500 rounded-t-xl"></div>
+
+    <div class="p-6 overflow-visible">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Starter</h2>
+
+      <div class="inline-block bg-gray-100 text-gray-500 text-xs font-medium px-3 py-1 rounded-md mb-3">
+        7-days free then:
+      </div>
+
+      <div class="flex items-baseline gap-1 mb-1">
+        <span class="text-4xl font-extrabold text-gray-900 leading-none">$83.25</span>
+        <span class="text-gray-500 text-base">/month</span>
+      </div>
+
+      <p class="text-sm text-gray-400 mb-5">Billed yearly at <span class="text-gray-800">$999.00</span></p>
+
+      <div class="relative mb-6">
+
+        <input type="checkbox" id="tooltipToggle" class="hidden peer" />
+
+        <div class="absolute bottom-[calc(100%+8px)] left-0 right-0 z-50
+                    opacity-0 peer-checked:opacity-100
+                    pointer-events-none peer-checked:pointer-events-auto
+                    transition-opacity duration-200">
+          <div class="bg-gray-900 text-white text-xs rounded-lg px-3 py-2.5 leading-relaxed shadow-xl">
+            You cannot downgrade your plan until within 30 days of your next billing date.
+          </div>
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0
+                      border-l-[6px] border-r-[6px] border-t-[6px]
+                      border-l-transparent border-r-transparent border-t-gray-900"></div>
+        </div>
+
+
+        <label for="tooltipToggle"
+               class="flex items-center justify-center w-full
+                      border border-gray-800 rounded-lg py-3 px-4
+                      bg-white text-gray-800 font-semibold text-sm
+                      hover:bg-gray-300 hover:text-gray-500 hover:border-gray-300
+                      active:bg-white active:text-gray-800 active:border-gray-800
+                      transition-colors duration-150 cursor-pointer select-none">
+          Downgrade to Starter
+        </label>
+      </div>
+
+      <div class="border-t border-gray-200 mb-5"></div>
+
+      <ul class="space-y-4">
+        <li class="flex gap-3 items-start">
+          <span class="material-symbols-rounded text-green-500 text-xl flex-shrink-0 mt-0.5">star_rate</span>
+          <div>
+            <p class="font-semibold text-gray-800 text-sm leading-snug">Primary user + 0 free team members</p>
+            <p class="text-xs text-gray-400">(extra team members for $35/month)</p>
+          </div>
+        </li>
+        <li class="flex gap-3 items-center">
+          <span class="material-symbols-rounded text-green-500 text-xl flex-shrink-0">star_rate</span>
+          <p class="font-semibold text-gray-800 text-sm">Save unlimited properties</p>
+        </li>
+        <li class="flex gap-3 items-start">
+          <span class="material-symbols-rounded text-green-500 text-xl flex-shrink-0 mt-0.5">star_rate</span>
+          <div>
+            <p class="font-semibold text-gray-800 text-sm">10 000 exports</p>
+            <p class="text-xs text-gray-400">(additional exports at $0.02 each)</p>
+          </div>
+        </li>
+        <li class="flex gap-3 items-start">
+          <span class="material-symbols-rounded text-green-500 text-xl flex-shrink-0 mt-0.5">star_rate</span>
+          <div>
+            <p class="font-semibold text-gray-800 text-sm">500 free skip traces</p>
+            <p class="text-xs text-gray-400">(additional skip tracing at $0.08 each)</p>
+          </div>
+        </li>
+        <li class="flex gap-3 items-center">
+          <span class="material-symbols-rounded text-green-500 text-xl flex-shrink-0">star_rate</span>
+          <p class="font-semibold text-gray-800 text-sm">Imports $0.01</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>
