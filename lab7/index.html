@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        #elid {
+            width: 100px;
+            height: 100px;
+            background-color: teal;
+            position: relative;
+            border-radius: 10%;
+            margin: 5px;
+            left: 0;
+            transition: left 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <!--Відповідь до завдання 3-->
+    <input type="text" class="name">
+    <button type="submit" class="find_btn">Find</button>
+    
+    <div class="code"></div>
+    <br>
+
+    <!--Відповідь до завдання 4-->
+    <form id="userForm">
+        <label>First Name:
+            <input type="text" name="first_name" id="first_name">
+        </label>
+        <br>
+        <label>Last Name:
+            <input type="text" name="last_name" id="last_name">
+        </label>
+        <br>
+        <label>Email:
+            <input type="email" name="email" id="email">
+        </label>
+        <br>
+        <button type="submit">Submit</button>
+        <p id="warning" style="color:red;"></p>
+    </form>
+
+    <!--Відповідь до завдання 5-->
+    <div id="elid"></div>
+    <button id="leftBtn">Вліво</button>
+    <button id="rightBtn">Вправо</button>
+
+    <script>
+        /*
+        Відповідь до завдання 1:
+        Першим виконається big.js, тому що звичайні <script> виконуються синхронно в
+        порядку їх підключення в HTML, незалежно від швидкості завантаження.
+
+        Відповідь до завдання 2:
+        2.1. x = 5, тому що вираз (a *= 2) дорівнюватиме 4.
+        2.2. Так, тому що всі не пусті рядки при приведенні їх до булевого значення дорівнюватимуть True
+        2.3.
+        */
+        let name = "Василь";
+        let admin = name;
+        console.log(admin);
+
+
+        // Відповідь до завдання 3:
+        data = []
+
+        async function get_data(url) {
+            const res = await fetch(url)
+            const result = await res.json()
+            const [, [name, state, county]] = result
+            return { name, state, county }
+        }
+
+        get_data("https://api.census.gov/data/2020/acs/acs5/profile?get=NAME&for=county:003&in=state:01").then(
+            result => {
+                data.push(result)
+                console.log(data)
+            }
+        )
+
+        async function get_specific_data(name) {
+            const res = await fetch("https://api.census.gov/data/2020/acs/acs5/profile?get=NAME&for=county")
+            const result = await res.json()
+
+            const dataRow = result.slice(1).find(row => row[0] === name)
+
+            if (!dataRow) return null
+
+            const [name_value, state, county] = dataRow
+
+            return [state, county]
+        }
+
+        get_specific_data("Lewis County, Kentucky").then(
+            result => {
+                console.log(result)
+            }
+        )
+
+        const code = document.querySelector(".code")
+        const input = document.querySelector(".name")
+        const button = document.querySelector(".find_btn")
+        button.addEventListener("click", async () => {
+            const result = await get_specific_data(input.value)
+            if (result) {
+                code.textContent = result[1]
+            } else code.textContent = "Not Found"
+        })
+
+        // Відповідь до завдання 4:
+        const form = document.getElementById("userForm");
+        const warning = document.getElementById("warning");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const firstName = document.getElementById("first_name").value.trim();
+            const lastName = document.getElementById("last_name").value.trim();
+            const email = document.getElementById("email").value.trim();
+
+            if (!firstName || !lastName || !email) {
+                warning.textContent = "Будь ласка, заповніть усі поля!";
+                return;
+            }
+
+            warning.textContent = "";
+            alert(`User data:\nFirst Name: ${firstName}\nLast Name: ${lastName}\nEmail: ${email}`);
+        });
+
+        //Відповідь до завдання 5:
+        const el = document.getElementById("elid");
+        const leftBtn = document.getElementById("leftBtn");
+        const rightBtn = document.getElementById("rightBtn");
+
+        let position = 0;
+
+        leftBtn.addEventListener("click", () => {
+            position -= 100;
+            el.style.left = position + "px";
+        });
+
+        rightBtn.addEventListener("click", () => {
+            position += 100;
+            el.style.left = position + "px";
+        });
+    </script>
+</body>
+</html>
