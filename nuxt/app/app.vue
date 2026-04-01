@@ -11,7 +11,7 @@ useHead({
   }
 })
 
-const title = 'Nuxt Starter Template'
+const title = 'Список продуктів'
 const description = 'A production-ready starter template powered by Nuxt UI. Build beautiful, accessible, and performant applications in minutes, not hours.'
 
 useSeoMeta({
@@ -32,8 +32,25 @@ useSeoMeta({
         <NuxtLink to="/">
           <AppLogo class="w-auto h-6 shrink-0" />
         </NuxtLink>
+      </template>
 
-        <TemplateMenu />
+      <UNavigationMenu
+        :items="[
+          { label: 'Home', to: '/' },
+          { label: 'Products', to: '/products' },
+          { label: 'Table', to: '/table' }
+        ]"
+      />
+
+      <template #body>
+        <UNavigationMenu
+          orientation="vertical"
+          :items="[
+            { label: 'Home', to: '/' },
+            { label: 'Products', to: '/products' },
+            { label: 'Table', to: '/table' }
+          ]"
+        />
       </template>
 
       <template #right>
