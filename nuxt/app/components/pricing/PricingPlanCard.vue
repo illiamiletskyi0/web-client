@@ -88,6 +88,7 @@ const savingsLabel = computed(() => {
       text-color="black"
       block
       size="xl"
+      :to="`/checkout?plan=${plan.id}&cycle=${cycle}`"
       class="mt-8 h-12 rounded-[6px] text-base font-bold text-black"
       :ui="{
         base: 'justify-center tracking-tight',
