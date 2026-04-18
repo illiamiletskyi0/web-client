@@ -1,5 +1,20 @@
 <script setup lang="ts">
 const { plans, billingCycle, pending, error } = usePricingPlans()
+const subscriptionStore = useSubscriptionStore()
+const router = useRouter()
+
+function selectPlan(payload: { plan: PricingPlan; cycle: BillingCycle }) {
+  const { plan } = payload
+  subscriptionStore.setSelectedSubscription({
+    id: plan.id,
+    name: plan.name,
+    cycle: billingCycle.value,
+    monthlyDisplay: billingCycle.value === 'annual' ? plan.annual.monthlyEquivalent : plan.monthlyPrice,
+    price: billingCycle.value === 'annual' ? plan.annual.billedYearly : plan.monthlyPrice,
+    label: `${plan.name} ${billingCycle.value === 'annual' ? 'Annual' : 'Monthly'}`
+  })
+  router.push({ path: '/checkout', query: { plan: plan.id, cycle: billingCycle.value } })
+}
 
 useSeoMeta({
   title: 'Pricing Plans',
@@ -39,6 +54,7 @@ useSeoMeta({
             :key="plan.id"
             :plan="plan"
             :cycle="billingCycle"
+            @select="selectPlan"
           />
         </template>
       </div>

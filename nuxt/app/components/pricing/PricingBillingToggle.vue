@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { BillingCycle } from '~/composables/usePricingPlans'
-
 const props = defineProps<{
   modelValue: BillingCycle
 }>()

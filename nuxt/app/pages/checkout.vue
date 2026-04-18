@@ -25,6 +25,7 @@ interface CheckoutPlanResponse {
 
 const route = useRoute()
 const router = useRouter()
+const subscriptionStore = useSubscriptionStore()
 
 const planId = computed(() => String(route.query.plan ?? 'team'))
 const cycle = computed(() => String(route.query.cycle ?? 'annual') as 'annual' | 'monthly')
@@ -32,6 +33,19 @@ const cycle = computed(() => String(route.query.cycle ?? 'annual') as 'annual' |
 const { data, status, error } = await useFetch<CheckoutPlanResponse>('/api/subscription/plan', {
   key: `checkout-plan-${planId.value}-${cycle.value}`,
   query: { id: planId, cycle }
+})
+
+watchEffect(() => {
+  if (data.value && !subscriptionStore.selectedSubscription) {
+    subscriptionStore.setSelectedSubscription({
+      id: data.value.plan.id,
+      name: data.value.plan.name,
+      cycle: cycle.value,
+      monthlyDisplay: data.value.monthlyDisplay,
+      price: data.value.price,
+      label: data.value.label
+    })
+  }
 })
 
 useSeoMeta({
@@ -163,6 +177,19 @@ async function handleSubmit() {
         >
           &lt;&lt; back
         </NuxtLink>
+
+        <div
+          v-if="subscriptionStore.selectedSubscription"
+          class="mb-6 rounded-lg border border-[#d7dde4] bg-white p-5 shadow-sm"
+        >
+          <p class="text-xs uppercase tracking-[0.2em] text-[#5f6c7b]">Selected subscription</p>
+          <p class="mt-2 text-lg font-semibold text-[#1e2733]">
+            {{ subscriptionStore.selectedSubscription.name }} — {{ subscriptionStore.selectedSubscription.cycle }}
+          </p>
+          <p class="text-sm text-[#4a5968]">
+            {{ subscriptionStore.selectedSubscription.label }} · ${{ formatMoney(subscriptionStore.selectedSubscription.monthlyDisplay) }} / month
+          </p>
+        </div>
 
         <h2 class="mb-1 text-2xl font-extrabold leading-tight text-[#1e2733] sm:text-3xl">
           You're Almost In - Start Your 3-Day Free Trial Now!
