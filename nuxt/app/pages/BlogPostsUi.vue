@@ -59,21 +59,10 @@ onMounted(fetchPosts)
 <template>
   <section class="min-h-screen bg-[#edf1f4] py-10 sm:py-12 lg:py-14">
     <div class="mx-auto w-full max-w-5xl px-5 sm:px-8 lg:px-10">
-      <div class="mb-8 flex items-center justify-between">
+      <div class="mb-8">
         <h1 class="text-[26px] font-extrabold leading-tight text-[#1f2a37] sm:text-[32px]">
           Управління блогом
         </h1>
-
-        <a
-          href="/admin/blog/posts/create"
-          class="inline-flex items-center gap-1.5 rounded-lg bg-[#00dc82] px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#00c773]"
-        >
-          <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <line x1="12" y1="5" x2="12" y2="19" />
-            <line x1="5" y1="12" x2="19" y2="12" />
-          </svg>
-          Додати
-        </a>
       </div>
 
       <div
@@ -146,7 +135,7 @@ onMounted(fetchPosts)
 
         <template #title-cell="{ row }">
           <a
-            :href="'/admin/blog/posts/' + row.original.id + '/edit'"
+            :href="'/blog/posts/' + row.original.id"
             class="font-medium text-[#00dc82] underline decoration-[#00dc82]/30 underline-offset-2 transition-colors hover:text-[#00c773]"
           >
             {{ row.original.title }}

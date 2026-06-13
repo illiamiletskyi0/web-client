@@ -48,14 +48,8 @@ onMounted(() => getPosts())
   <div class="container mx-auto">
     <div class="flex justify-center">
       <div class="w-full">
-        <div class="mb-4 flex items-center justify-between rounded-lg bg-gray-100 px-4 py-3">
+        <div class="mb-4 rounded-lg bg-gray-100 px-4 py-3">
           <h2 class="text-lg font-bold text-gray-900">Публікації</h2>
-          <a
-            href="/admin/blog/posts/create"
-            class="rounded-lg bg-[#00dc82] px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#00c773]"
-          >
-            Додати
-          </a>
         </div>
 
         <div v-if="loading" class="flex items-center justify-center rounded-lg border bg-white py-20">
@@ -105,7 +99,7 @@ onMounted(() => getPosts())
               <td class="px-4 py-3 text-sm text-gray-700">{{ post.category_id }}</td>
               <td class="px-4 py-3 text-sm font-medium">
                 <a
-                  :href="'/admin/blog/posts/' + post.id + '/edit'"
+                  :href="'/blog/posts/' + post.id"
                   class="text-[#00dc82] underline decoration-[#00dc82]/30 underline-offset-2 transition-colors hover:text-[#00c773]"
                 >
                   {{ post.title }}
