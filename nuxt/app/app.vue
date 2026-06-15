@@ -38,7 +38,9 @@ useSeoMeta({
         :items="[
           { label: 'Home', to: '/' },
           { label: 'Products', to: '/products' },
-          { label: 'Table', to: '/table' }
+          { label: 'Table', to: '/table' },
+          { label: 'Categories', to: '/categories' },
+          { label: 'Blog', to: '/blogposts' }
         ]"
       />
 
@@ -48,8 +50,10 @@ useSeoMeta({
           :items="[
             { label: 'Home', to: '/' },
             { label: 'Products', to: '/products' },
-            { label: 'Table', to: '/table' }
-          ]"
+            { label: 'Table', to: '/table' },
+            { label: 'Categories', to: '/categories' },
+          { label: 'Blog', to: '/blogposts' }
+        ]"
         />
       </template>
 

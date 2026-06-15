@@ -16,3 +16,43 @@
   --color-green-900: #0A5331;
   --color-green-950: #052E16;
 }
+
+/* Dark mode theme variables for page-level colors */
+@layer base {
+  :root {
+    --page-bg: #edf1f4;
+    --card-bg: #ffffff;
+    --card-border: #e5e7eb;
+    --card-border-light: #f3f4f6;
+    --text-heading: #1f2a37;
+    --text-body: #4b5563;
+    --text-muted: #6b7280;
+    --text-dim: #9ca3af;
+    --header-bg-start: #f9fafb;
+    --table-header-bg: rgba(249, 250, 251, 0.8);
+    --table-row-hover: rgba(249, 250, 251, 0.6);
+    --pagination-bg: rgba(249, 250, 251, 0.5);
+    --badge-bg: #f3f4f6;
+  }
+
+  .dark {
+    --page-bg: #0f172a;
+    --card-bg: #1e293b;
+    --card-border: #334155;
+    --card-border-light: #1e293b;
+    --text-heading: #f1f5f9;
+    --text-body: #cbd5e1;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+    --header-bg-start: #1e293b;
+    --table-header-bg: rgba(30, 41, 59, 0.8);
+    --table-row-hover: rgba(30, 41, 59, 0.6);
+    --pagination-bg: rgba(30, 41, 59, 0.5);
+    --badge-bg: #334155;
+  }
+
+  html {
+    background-color: var(--page-bg);
+    color: var(--text-body);
+  }
+}

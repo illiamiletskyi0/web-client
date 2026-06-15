@@ -48,7 +48,7 @@ function sortIcon(field: ProductSortField): string {
 
     <div
       v-if="status === 'pending'"
-      class="flex items-center justify-center rounded-xl border border-gray-200 bg-white py-24"
+      class="flex items-center justify-center rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1e293b] py-24"
     >
       <div class="flex flex-col items-center gap-3">
         <div class="size-8 animate-spin rounded-full border-4 border-gray-200 border-t-gray-900" />
@@ -66,11 +66,11 @@ function sortIcon(field: ProductSortField): string {
       <p class="mt-1 text-xs text-red-500">{{ error.message }}</p>
     </div>
 
-    <div v-else class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+    <div v-else class="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1e293b] shadow-sm">
       <div class="overflow-x-auto">
         <table class="w-full min-w-225 text-left">
           <thead>
-            <tr class="border-b border-gray-200 bg-gray-50/80">
+            <tr class="border-b border-gray-200 dark:border-gray-700 bg-gray-50/80 dark:bg-gray-800/50">
               <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
                 Thumbnail
               </th>
@@ -91,12 +91,15 @@ function sortIcon(field: ProductSortField): string {
                   </span>
                 </span>
               </th>
+              <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                Дії
+              </th>
             </tr>
           </thead>
 
           <tbody>
             <tr v-if="paginatedProducts.length === 0">
-              <td colspan="7" class="px-4 py-20 text-center">
+              <td colspan="8" class="px-4 py-20 text-center">
                 <p class="text-sm text-gray-400">No products match your search.</p>
               </td>
             </tr>
@@ -110,7 +113,7 @@ function sortIcon(field: ProductSortField): string {
         </table>
       </div>
 
-      <div class="border-t border-gray-200 bg-gray-50/50 px-4 py-3">
+      <div class="border-t border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/30 px-4 py-3">
         <TableDataTablePagination
           :current-page="currentPage"
           :total-pages="totalPages"

@@ -19,6 +19,12 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2025-01-15',
 
+  colorMode: {
+    preference: 'light',
+    fallback: 'dark',
+    classSuffix: ''
+  },
+
   eslint: {
     config: {
       stylistic: {
@@ -26,5 +32,6 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
-  }
+  },
+
 })

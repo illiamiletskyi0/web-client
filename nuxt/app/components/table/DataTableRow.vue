@@ -1,9 +1,27 @@
 <script setup lang="ts">
 import type { Product } from '~/types/product'
 
-defineProps<{
+const props = defineProps<{
   product: Product
 }>()
+
+const items = [
+  [{
+    label: 'Edit',
+    icon: 'i-lucide-pencil',
+    onSelect: () => {
+      // TODO: navigate to edit page
+      console.log('Edit', props.product.id)
+    }
+  }, {
+    label: 'Delete',
+    icon: 'i-lucide-trash-2',
+    onSelect: () => {
+      // TODO: implement delete
+      console.log('Delete', props.product.id)
+    }
+  }]
+]
 </script>
 
 <template>
@@ -38,6 +56,16 @@ defineProps<{
       <span class="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-medium capitalize text-gray-700">
         {{ product.category }}
       </span>
+    </td>
+    <td class="px-4 py-3">
+      <UDropdownMenu :items="items">
+        <UButton
+          color="neutral"
+          variant="ghost"
+          icon="i-lucide-ellipsis-vertical"
+          size="sm"
+        />
+      </UDropdownMenu>
     </td>
   </tr>
 </template>
